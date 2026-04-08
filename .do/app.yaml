@@ -1,0 +1,6 @@
+name: sfchronicle-top100-restaurants
+static_sites:
+- name: sfchronicle-top100-restaurants
+  build_command: npm run build
+  output_dir: dist
+  environment_slug: node-js
