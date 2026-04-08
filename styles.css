@@ -1,0 +1,321 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --gold: #c9a84c;
+  --dark: #1a1a1a;
+  --panel: #f8f4ee;
+  --border: #e0d5c5;
+  --accent: #8b1a1a;
+  --text: #333;
+  --muted: #666;
+}
+
+body {
+  font-family: 'Georgia', serif;
+  background: var(--dark);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Header ── */
+header {
+  background: var(--dark);
+  color: white;
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2px solid var(--gold);
+  flex-shrink: 0;
+}
+header h1 { font-size: 1.2rem; font-weight: normal; letter-spacing: 0.05em; }
+header h1 span { color: var(--gold); font-weight: bold; }
+header .subtitle { font-size: 0.75rem; color: #aaa; font-style: italic; margin-top: 2px; }
+.header-right { text-align: right; font-size: 0.75rem; color: #888; }
+.header-right a { color: var(--gold); text-decoration: none; }
+
+/* ── App layout ── */
+.app {
+  display: flex;
+  height: 70vh;
+  min-height: 480px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+/* ── Sidebar ── */
+.sidebar {
+  width: 380px;
+  flex-shrink: 0;
+  background: var(--panel);
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.filters {
+  padding: 14px 16px;
+  background: white;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.filters-row { display: flex; gap: 8px; margin-bottom: 8px; flex-wrap: wrap; }
+.filter-group { flex: 1; min-width: 120px; }
+.filter-group label {
+  display: block;
+  font-size: 0.65rem;
+  font-weight: bold;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+.filter-group select {
+  width: 100%;
+  padding: 6px 8px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-size: 0.8rem;
+  background: white;
+  cursor: pointer;
+  color: var(--text);
+}
+.search-box {
+  width: 100%;
+  padding: 7px 10px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-size: 0.85rem;
+  margin-bottom: 8px;
+  font-family: inherit;
+}
+.filter-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+.sort-btn {
+  padding: 4px 10px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  font-size: 0.72rem;
+  cursor: pointer;
+  background: white;
+  color: var(--muted);
+  transition: all 0.15s;
+  font-family: inherit;
+}
+.sort-btn.active { background: var(--dark); color: white; border-color: var(--dark); }
+
+.results-count {
+  font-size: 0.75rem;
+  color: var(--muted);
+  padding: 8px 16px;
+  background: white;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.nearby-notice {
+  display: none;
+  padding: 8px 16px;
+  background: #fff8e8;
+  border-bottom: 1px solid #e8d8a0;
+  font-size: 0.75rem;
+  color: #7a5800;
+  line-height: 1.4;
+  flex-shrink: 0;
+}
+.nearby-notice strong { font-weight: bold; }
+.nearby-notice.visible { display: block; }
+
+.list { flex: 1; overflow-y: auto; }
+
+/* ── Restaurant cards ── */
+.card {
+  display: flex;
+  gap: 12px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  transition: background 0.15s;
+  background: white;
+}
+.card:hover { background: #fdf8f2; }
+.card.active { background: #fef9ee; border-left: 3px solid var(--gold); }
+
+.card-rank {
+  flex-shrink: 0;
+  width: 36px;
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: var(--gold);
+  padding-top: 2px;
+  line-height: 1;
+}
+.card-rank .rank-num { font-size: 1.2rem; }
+
+.card-img {
+  flex-shrink: 0;
+  width: 72px;
+  height: 60px;
+  border-radius: 4px;
+  object-fit: cover;
+  background: #eee;
+}
+.card-img-placeholder {
+  flex-shrink: 0;
+  width: 72px;
+  height: 60px;
+  border-radius: 4px;
+  background: #e8e0d0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+
+.card-body { flex: 1; min-width: 0; }
+.card-name {
+  font-size: 0.95rem;
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--dark);
+}
+.card-meta {
+  font-size: 0.72rem;
+  color: var(--muted);
+  margin-top: 2px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  align-items: center;
+}
+.card-actions { display: flex; gap: 6px; margin-top: 5px; }
+
+/* ── Tags ── */
+.tag {
+  display: inline-block;
+  padding: 1px 6px;
+  border-radius: 10px;
+  font-size: 0.65rem;
+  font-weight: bold;
+  letter-spacing: 0.03em;
+}
+.tag-price   { background: #e8f0e0; color: #2d5a1b; }
+.tag-cuisine { background: #e8e8f0; color: #2a2a6a; }
+.tag-new     { background: #ffe8cc; color: #8b3a00; }
+.tag-up      { background: #e0f0e8; color: #1b5a2d; }
+.tag-down    { background: #f0e8e8; color: #5a1b1b; }
+
+/* ── Action buttons ── */
+.action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 2px 7px;
+  border-radius: 3px;
+  font-size: 0.65rem;
+  text-decoration: none;
+  font-weight: bold;
+  letter-spacing: 0.03em;
+  transition: opacity 0.15s;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+.action-btn:hover { opacity: 0.8; }
+.btn-maps     { background: #4285f4; color: white; }
+.btn-yelp     { background: #d32323; color: white; }
+.btn-sfc      { background: var(--dark); color: var(--gold); }
+.btn-gmaps-add { background: #34a853; color: white; }
+
+/* ── Map ── */
+.map-container { flex: 1; position: relative; }
+#map { width: 100%; height: 100%; }
+
+/* ── Map popup ── */
+.leaflet-popup-content-wrapper { border-radius: 8px; padding: 0; overflow: hidden; min-width: 300px; max-width: 340px; }
+.leaflet-popup-content { margin: 0; max-height: 520px; display: flex; flex-direction: column; }
+.popup-img { width: 100%; height: 150px; object-fit: cover; display: block; flex-shrink: 0; }
+.popup-body { padding: 12px 14px 0; overflow-y: auto; flex: 1; }
+.popup-body::-webkit-scrollbar { width: 4px; }
+.popup-body::-webkit-scrollbar-track { background: transparent; }
+.popup-body::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+.popup-rank { font-size: 0.7rem; color: var(--gold); font-weight: bold; letter-spacing: 0.1em; text-transform: uppercase; }
+.popup-name { font-size: 1rem; font-weight: bold; margin: 2px 0 6px; }
+.popup-meta { font-size: 0.75rem; color: var(--muted); margin-bottom: 8px; }
+.popup-desc { font-size: 0.82rem; line-height: 1.55; color: var(--text); margin-bottom: 12px; }
+.popup-actions { display: flex; gap: 6px; flex-wrap: wrap; padding-bottom: 12px; position: sticky; bottom: 0; background: white; padding-top: 8px; border-top: 1px solid var(--border); margin-top: 4px; }
+
+/* ── Map legend ── */
+.map-legend {
+  position: absolute;
+  bottom: 24px;
+  right: 10px;
+  background: white;
+  padding: 10px 12px;
+  border-radius: 6px;
+  font-size: 0.72rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  z-index: 1000;
+  pointer-events: none;
+}
+.legend-item { display: flex; align-items: center; gap: 6px; margin: 3px 0; }
+.legend-dot { width: 14px; height: 14px; border-radius: 50%; flex-shrink: 0; }
+
+/* ── Charts ── */
+.charts-section {
+  display: flex;
+  background: #111;
+  border-top: 2px solid var(--gold);
+  flex-shrink: 0;
+  overflow-x: auto;
+}
+.chart-card {
+  flex: 1;
+  min-width: 260px;
+  padding: 20px 24px 16px;
+  border-right: 1px solid #2a2a2a;
+  display: flex;
+  flex-direction: column;
+}
+.chart-card:last-child { border-right: none; }
+.chart-title {
+  font-size: 0.65rem;
+  font-weight: bold;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 4px;
+}
+.chart-subtitle {
+  font-size: 0.68rem;
+  color: #666;
+  margin-bottom: 14px;
+  font-style: italic;
+}
+.chart-wrap {
+  flex: 1;
+  position: relative;
+  min-height: 180px;
+}
+.chart-wrap canvas { display: block; cursor: pointer; }
+.chart-note {
+  font-size: 0.62rem;
+  color: #555;
+  margin-top: 8px;
+  text-align: center;
+  font-style: italic;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .app { flex-direction: column; height: auto; }
+  .sidebar { width: 100%; height: 50vh; }
+  .map-container { height: 50vh; }
+  .charts-section { flex-direction: column; }
+  .chart-card { min-width: 0; }
+}
