@@ -2,12 +2,14 @@ import { useState, useMemo, useCallback } from 'react';
 import { matchesDropdowns, applyChartFilter, sortData } from './utils/filters';
 import { nearbyFallback } from './utils/geo';
 import Header from './components/Header';
+import InfoBar from './components/InfoBar';
 import Sidebar from './components/Sidebar';
 import MapView from './components/MapView';
 import ChartsSection from './components/ChartsSection';
 import ComparisonSection from './components/ComparisonSection';
 import Comparison2024Section from './components/Comparison2024Section';
 import Footer from './components/Footer';
+import SiteFooter from './components/SiteFooter';
 
 export default function App({
   restaurants, year, articleUrl,
@@ -56,6 +58,7 @@ export default function App({
   return (
     <>
       <Header year={year} otherYears={otherYears} articleUrl={articleUrl} />
+      <InfoBar />
       <div className="app">
         <Sidebar
           filteredData={filteredData}
@@ -95,6 +98,7 @@ export default function App({
         <Comparison2024Section restaurants2024={restaurants} survivalData={survivalData} />
       )}
       <Footer otherYears={otherYears} />
+      <SiteFooter />
     </>
   );
 }

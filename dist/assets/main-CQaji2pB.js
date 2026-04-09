@@ -1,0 +1,1 @@
+import{c as a,j as t,r,A as e,R as s,a as o}from"./styles-DgB0TZWy.js";a(document.getElementById("root")).render(t.jsx(r.StrictMode,{children:t.jsx(e,{restaurants:o,year:2026,articleUrl:"https://www.sfchronicle.com/projects/2026/top-100-best-restaurants-san-francisco-bay-area/",otherYears:[{year:2025,path:"/2025.html"},{year:2024,path:"/2024.html"}],comparisonData:s})}));

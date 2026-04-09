@@ -36,6 +36,34 @@ header .subtitle { font-size: 0.75rem; color: #aaa; font-style: italic; margin-t
 .header-right { text-align: right; font-size: 0.75rem; color: #888; }
 .header-right a { color: var(--gold); text-decoration: none; }
 
+/* ── Info bar ── */
+.info-bar {
+  background: #111;
+  border-bottom: 1px solid #2a2a2a;
+  padding: 8px 20px;
+  font-size: 0.72rem;
+  color: #666;
+  line-height: 1.5;
+  flex-shrink: 0;
+}
+.info-bar a { color: #888; text-decoration: none; border-bottom: 1px dotted #444; }
+.info-bar a:hover { color: var(--gold); border-bottom-color: var(--gold); }
+
+/* ── Site footer ── */
+.site-footer {
+  background: var(--dark);
+  border-top: 1px solid #1a1a1a;
+  padding: 12px 20px;
+  text-align: center;
+  font-size: 0.72rem;
+  color: #444;
+  position: sticky;
+  bottom: 0;
+  z-index: 500;
+}
+.site-footer a { color: #666; text-decoration: none; }
+.site-footer a:hover { color: var(--gold); }
+
 /* ── App layout ── */
 .app {
   display: flex;
