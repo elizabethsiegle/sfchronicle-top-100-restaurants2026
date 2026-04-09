@@ -29,7 +29,7 @@ And Claude Code just... built it.
 
 Scraped from the SF Chronicle using `curl` + Python/Node — no scraping library. The 2026 page had structured JSON-LD embedded in the HTML; 2025 and 2024 data was packed inside Gatsby JS bundles.
 
-Download the raw data:
+Download the raw data for yourself:
 - [restaurants-2026.json](/data/restaurants-2026.json) — 100 restaurants
 - [restaurants-2025.json](/data/restaurants-2025.json) — 100 restaurants
 - [restaurants-2024.json](/data/restaurants-2024.json) — 25 restaurants (fall top 25)
