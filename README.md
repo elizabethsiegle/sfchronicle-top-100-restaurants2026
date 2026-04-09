@@ -38,5 +38,5 @@ Download the raw data for yourself:
 - [React](https://react.dev) + [Vite](https://vitejs.dev)
 - [Leaflet.js](https://leafletjs.com) for maps
 - [Chart.js](https://www.chartjs.org) for charts
-- [Gradient AI](https://gradient.ai) for the chatbot
+- [Gradient AI](https://gradient.ai) + [Claude Opus 4](https://www.anthropic.com/claude/opus) for the data Q&A
 - [DigitalOcean App Platform](https://www.digitalocean.com/products/app-platform) for hosting
