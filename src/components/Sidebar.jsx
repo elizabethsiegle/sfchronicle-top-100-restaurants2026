@@ -1,21 +1,17 @@
 import { useEffect } from 'react';
 import RestaurantCard from './RestaurantCard';
 
-const DEFAULT_CITIES = ['Alameda','Berkeley','Concord','Fremont','Geyserville','Healdsburg','Menlo Park','Napa','Oakland','Petaluma','San Anselmo','San Bruno','San Francisco','San Jose','San Rafael','Santa Clara','Sebastopol','Sonoma','St. Helena'];
-const DEFAULT_CUISINES = ['American','Asian American bakery','Asian American deli','Burgers','Café','Californian','Cambodian','Cantonese','Chamorro','Chinese','Eritrean','Ethiopian','Filipino','Fine dining','French','French wine bar','Indian','Indonesian-Texas barbecue','Italian','Japanese','Korean','Korean Taiwanese','Laotian','Lebanese','Malaysian','Mediterranean','Mexican','Mexican deli','Middle Eastern','Moroccan','NOLA sandwiches','Pakistani','Pizza','Salvadoran','Seafood','Somali','Soul food','South Indian','Steakhouse','Sushi','Thai','Turkish','Uyghur','Vegan Sushi','Vietnamese','Wine bar'];
 const SORT_LABELS = { rank: 'Rank', name: 'A–Z', 'price-asc': '$ first', 'price-desc': '$$$$ first' };
 
 export default function Sidebar({
-  filteredData, filters, sortMode,
+  filteredData, total, filters, sortMode,
   onSearchChange, onLocationChange, onCityChange, onPriceChange, onCuisineChange, onSortChange,
   chartFilter, onChartFilterClear,
+  hasActiveFilters, onClearAll,
   activeSlug, onRestaurantFocus,
   nearbyInfo,
   cities, cuisines,
 }) {
-  const cityList    = cities   || DEFAULT_CITIES;
-  const cuisineList = cuisines || DEFAULT_CUISINES;
-
   useEffect(() => {
     if (activeSlug) {
       document.getElementById(`card-${activeSlug}`)
@@ -50,7 +46,7 @@ export default function Sidebar({
             <label>City</label>
             <select value={filters.city} onChange={e => onCityChange(e.target.value)}>
               <option value="">All cities</option>
-              {cityList.map(c => <option key={c} value={c}>{c}</option>)}
+              {cities.map(c => <option key={c} value={c}>{c}</option>)}
             </select>
           </div>
           <div className="filter-group">
@@ -70,7 +66,7 @@ export default function Sidebar({
             <label>Cuisine</label>
             <select value={filters.cuisine} onChange={e => onCuisineChange(e.target.value)}>
               <option value="">All cuisines</option>
-              {cuisineList.map(c => <option key={c} value={c}>{c}</option>)}
+              {cuisines.map(c => <option key={c} value={c}>{c}</option>)}
             </select>
           </div>
         </div>
@@ -86,10 +82,17 @@ export default function Sidebar({
               {label}
             </button>
           ))}
+          {hasActiveFilters && (
+            <button className="sort-btn clear-all-btn" onClick={onClearAll}>
+              ✕ Clear all
+            </button>
+          )}
         </div>
       </div>
 
-      <div className="results-count">Showing {filteredData.length} of {filteredData.length === 0 ? 0 : filteredData.length} restaurants</div>
+      <div className="results-count">
+        Showing {filteredData.length} of {total} restaurants
+      </div>
 
       {nearbyInfo && (
         <div className="nearby-notice visible">

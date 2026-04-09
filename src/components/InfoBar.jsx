@@ -2,16 +2,20 @@ export default function InfoBar() {
   return (
     <div className="info-bar">
       <span>
-        An interactive explorer built with{' '}
+        Built with{' '}
         <a href="https://react.dev" target="_blank" rel="noreferrer">React</a>,{' '}
         <a href="https://leafletjs.com" target="_blank" rel="noreferrer">Leaflet</a> maps,{' '}
         <a href="https://www.chartjs.org" target="_blank" rel="noreferrer">Chart.js</a> visualizations,
-        and a{' '}
-        <a href="https://www.gradient.ai" target="_blank" rel="noreferrer">Gradient AI</a> chatbot trained on the SF Chronicle articles.
-        Restaurant data sourced from the{' '}
-        <a href="https://www.sfchronicle.com" target="_blank" rel="noreferrer">San Francisco Chronicle</a>.
+        Data sourced from the{' '}
+        <a href="https://www.sfchronicle.com" target="_blank" rel="noreferrer">SF Chronicle</a>{' '}
+        via schema.org JSON-LD and Gatsby JS bundles.
         Hosted on{' '}
-        <a href="https://www.digitalocean.com/products/app-platform" target="_blank" rel="noreferrer">DigitalOcean App Platform</a>.
+        <a href="https://www.digitalocean.com/products/app-platform" target="_blank" rel="noreferrer">DigitalOcean</a>.
+        &nbsp;·&nbsp;
+        Data:{' '}
+        <a href="/data.html?year=2026">2026</a>,{' '}
+        <a href="/data.html?year=2025">2025</a>,{' '}
+        <a href="/data.html?year=2024">2024</a>
       </span>
     </div>
   );

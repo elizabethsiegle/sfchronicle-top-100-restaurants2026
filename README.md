@@ -23,7 +23,6 @@ And Claude Code just... built it.
 - **Charts** — interactive donut and bar charts breaking down by region, price tier, and cuisine type
 - **Year-over-year comparison** — 2025 vs 2026 charts showing rank changes, new entries, and what dropped; 2024 survival tracker showing which of the top 25 made subsequent lists
 - **Nearby fallback** — type a city with no listed restaurants and it shows the closest ones
-- **AI chatbot** — powered by [Gradient AI](https://gradient.ai), trained on the SF Chronicle articles
 
 ## Data
 
