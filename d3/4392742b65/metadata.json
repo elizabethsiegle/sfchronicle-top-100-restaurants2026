@@ -1,0 +1,47 @@
+{
+  "cli_version": "0.5.3",
+  "checkpoint_id": "d34392742b65",
+  "strategy": "manual-commit",
+  "branch": "main",
+  "checkpoints_count": 3,
+  "files_touched": [
+    "dist/2024.html",
+    "dist/2025.html",
+    "dist/assets/2024-BHq5MeFp.js",
+    "dist/assets/2024-CnuROiu4.js",
+    "dist/assets/2025-CVnEyahV.js",
+    "dist/assets/2025-DTF6S5XJ.js",
+    "dist/assets/App-BsYZPfII.js",
+    "dist/assets/App-Cx51q1O2.js",
+    "dist/assets/data-BZ381VRX.js",
+    "dist/assets/data-DTdkoU8f.js",
+    "dist/assets/main-CGcnqsAH.js",
+    "dist/assets/main-D_LMaqIh.js",
+    "dist/assets/styles--ABrlE5T.css",
+    "dist/assets/styles-BE20unfY.js",
+    "dist/assets/styles-BNo0cQK6.js",
+    "dist/assets/styles-CwO16ckv.css",
+    "dist/data.html",
+    "dist/index.html",
+    "src/App.jsx",
+    "src/DataViewer.jsx",
+    "src/components/Sidebar.jsx",
+    "src/styles.css",
+    "src/utils/filters.js"
+  ],
+  "sessions": [
+    {
+      "metadata": "/d3/4392742b65/0/metadata.json",
+      "transcript": "/d3/4392742b65/0/full.jsonl",
+      "content_hash": "/d3/4392742b65/0/content_hash.txt",
+      "prompt": "/d3/4392742b65/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 542,
+    "cache_creation_tokens": 2693533,
+    "cache_read_tokens": 34905115,
+    "output_tokens": 269988,
+    "api_call_count": 427
+  }
+}

@@ -1,0 +1,54 @@
+<ide_opened_file>The user opened the file /Users/lsiegle/Desktop/demos/sfchronicle-top100-restaurants/data.js in the IDE. This may or may not be related to the current task.</ide_opened_file>
+a user said the deployed app is returning 404s
+
+---
+
+this is my current app spec, edit it accordingly with that please:
+
+domains:
+- domain: sfchronicletop100restaurants.bar
+  type: PRIMARY
+  zone: sfchronicletop100restaurants.bar
+envs:
+- key: VITE_DO_API_KEY
+  scope: RUN_AND_BUILD_TIME
+  value: REDACTED
+ingress:
+  rules:
+  - component:
+      name: sfchronicle-top-100-restaurants2
+    match:
+      path:
+        prefix: /
+name: sfchronicletop100-restaurantsapp
+region: sfo
+static_sites:
+- github:
+    branch: main
+    deploy_on_push: true
+    repo: elizabethsiegle/sfchronicle-top-100-restaurants2026
+  name: sfchronicle-top-100-restaurants2
+  output_dir: dist
+  source_dir: /
+
+---
+
+that returns 
+error validating app spec field "ingress.rules": App component routing is mutually exclusive with App Ingress routing
+
+---
+
+please add a search by tag or semantic search
+
+---
+
+<ide_opened_file>The user opened the file /Users/lsiegle/Desktop/demos/sfchronicle-top100-restaurants/src/utils/filters.js in the IDE. This may or may not be related to the current task.</ide_opened_file>
+fuck now the paths for /2025.html and /2024.html and /data.html do not work at all and they stay on the current page (data.html)
+
+---
+
+fuck now the paths for /2025.html and /2024.html and /data.html do not work at all and they stay on the current page (data.html)
+
+---
+
+in the data explorer, clicking 2025 top 100 doesn't edit the url to change the year to 2025 (but the data changes)
