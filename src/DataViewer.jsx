@@ -148,6 +148,12 @@ export default function DataViewer() {
   const [field,  setField]  = useState('');
   const [expand, setExpand] = useState(null);
 
+  useEffect(() => {
+    const p = new URLSearchParams(window.location.search);
+    p.set('year', year);
+    window.history.replaceState(null, '', `?${p.toString()}`);
+  }, [year]);
+
   const { data, filename } = DATASETS[year];
   const hasPrevRank = data.some(r => r.prev_rank !== null);
 

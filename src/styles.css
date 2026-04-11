@@ -136,6 +136,84 @@ header .subtitle { font-size: 0.75rem; color: #aaa; font-style: italic; margin-t
 .clear-all-btn { background: #fff0f0; color: #8b1a1a; border-color: #f0cece; margin-left: 4px; }
 .clear-all-btn:hover { background: #8b1a1a; color: white; border-color: #8b1a1a; }
 
+/* ── Tag chips ── */
+.tag-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-bottom: 8px;
+}
+.tag-chip {
+  padding: 3px 9px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  font-size: 0.7rem;
+  cursor: pointer;
+  background: white;
+  color: #555;
+  transition: all 0.15s;
+  font-family: inherit;
+  white-space: nowrap;
+}
+.tag-chip:hover { border-color: #aaa; color: var(--dark); }
+.tag-chip.active {
+  background: var(--dark);
+  color: var(--gold);
+  border-color: var(--dark);
+}
+
+/* ── Semantic / AI search ── */
+.semantic-search {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid var(--border);
+}
+.semantic-search-label {
+  font-size: 0.63rem;
+  font-weight: bold;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 5px;
+}
+.semantic-input-row {
+  display: flex;
+  gap: 4px;
+}
+.semantic-input {
+  flex: 1;
+  padding: 6px 8px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-size: 0.78rem;
+  font-family: inherit;
+  background: white;
+  color: var(--text);
+}
+.semantic-input:focus { outline: none; border-color: #888; }
+.semantic-btn {
+  padding: 6px 12px;
+  background: var(--dark);
+  color: var(--gold);
+  border: 1px solid #333;
+  border-radius: 4px;
+  font-size: 0.82rem;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+.semantic-btn:hover:not(:disabled) { background: #222; }
+.semantic-btn:disabled { opacity: 0.45; cursor: default; }
+.semantic-error {
+  margin-top: 4px;
+  font-size: 0.7rem;
+  color: #a00;
+}
+.semantic-filter-badge { background: #f0f8f0; border-color: #b8dbb8; }
+.semantic-filter-badge span { color: #2a5e2a; }
+.semantic-filter-badge button { color: #2a5e2a; }
+
 .results-count {
   font-size: 0.75rem;
   color: var(--muted);

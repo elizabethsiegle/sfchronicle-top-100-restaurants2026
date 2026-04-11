@@ -1,7 +1,16 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import RestaurantCard from './RestaurantCard';
 
 const SORT_LABELS = { rank: 'Rank', name: 'A–Z', 'price-asc': '$ first', 'price-desc': '$$$$ first' };
+
+const TAGS = [
+  { id: 'top10',   label: '🏆 Top 10',    prevRankOnly: false },
+  { id: 'budget',  label: '$ Budget',     prevRankOnly: false },
+  { id: 'splurge', label: '$$$$ Splurge', prevRankOnly: false },
+  { id: 'new',     label: '✨ New',       prevRankOnly: true  },
+  { id: 'climber', label: '↑ Climber',    prevRankOnly: true  },
+  { id: 'faller',  label: '↓ Fell',       prevRankOnly: true  },
+];
 
 export default function Sidebar({
   filteredData, total, filters, sortMode,
@@ -11,7 +20,12 @@ export default function Sidebar({
   activeSlug, onRestaurantFocus,
   nearbyInfo,
   cities, cuisines,
+  tagFilter, onTagFilterChange, hasPrevRank,
+  semanticSlugs, semanticLoading, semanticError, semanticQuery,
+  onSemanticSearch, onClearSemantic,
 }) {
+  const [semanticInput, setSemanticInput] = useState('');
+
   useEffect(() => {
     if (activeSlug) {
       document.getElementById(`card-${activeSlug}`)
@@ -20,6 +34,11 @@ export default function Sidebar({
   }, [activeSlug]);
 
   const fieldName = chartFilter ? { location: 'Region', price: 'Price', cuisine: 'Cuisine' }[chartFilter.field] : null;
+  const visibleTags = TAGS.filter(t => !t.prevRankOnly || hasPrevRank);
+
+  function handleSemanticSubmit() {
+    if (semanticInput.trim()) onSemanticSearch(semanticInput.trim());
+  }
 
   return (
     <div className="sidebar">
@@ -31,6 +50,18 @@ export default function Sidebar({
           value={filters.search}
           onChange={e => onSearchChange(e.target.value)}
         />
+
+        <div className="tag-chips">
+          {visibleTags.map(t => (
+            <button
+              key={t.id}
+              className={`tag-chip${tagFilter === t.id ? ' active' : ''}`}
+              onClick={() => onTagFilterChange(tagFilter === t.id ? null : t.id)}
+            >
+              {t.label}
+            </button>
+          ))}
+        </div>
 
         <div className="filters-row">
           <div className="filter-group">
@@ -88,6 +119,29 @@ export default function Sidebar({
             </button>
           )}
         </div>
+
+        <div className="semantic-search">
+          <div className="semantic-search-label">AI Search — describe what you want</div>
+          <div className="semantic-input-row">
+            <input
+              className="semantic-input"
+              type="text"
+              placeholder="e.g. romantic date night, casual sushi..."
+              value={semanticInput}
+              onChange={e => setSemanticInput(e.target.value)}
+              onKeyDown={e => e.key === 'Enter' && handleSemanticSubmit()}
+              disabled={semanticLoading}
+            />
+            <button
+              className="semantic-btn"
+              onClick={handleSemanticSubmit}
+              disabled={semanticLoading || !semanticInput.trim()}
+            >
+              {semanticLoading ? '…' : '→'}
+            </button>
+          </div>
+          {semanticError && <div className="semantic-error">{semanticError}</div>}
+        </div>
       </div>
 
       <div className="results-count">
@@ -97,6 +151,13 @@ export default function Sidebar({
       {nearbyInfo && (
         <div className="nearby-notice visible">
           📍 No restaurants found in <strong>{nearbyInfo.cityName.replace(/\b\w/g, c => c.toUpperCase())}</strong> — showing the {nearbyInfo.pool.length} closest (nearest: <strong>{nearbyInfo.pool[0].name}</strong>, {nearbyInfo.pool[0]._dist.toFixed(1)} mi away)
+        </div>
+      )}
+
+      {semanticSlugs && !semanticLoading && (
+        <div className="chart-filter-badge semantic-filter-badge">
+          <span>AI filter: <strong>"{semanticQuery}"</strong> — {semanticSlugs.length} matches</span>
+          <button onClick={onClearSemantic}>✕ Clear</button>
         </div>
       )}
 
